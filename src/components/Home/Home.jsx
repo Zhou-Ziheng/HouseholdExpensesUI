@@ -1,7 +1,9 @@
 import React from 'react'
-
+import Navbar from '../Navbar/Navbar'
 const Home = () => {
     return (
+        <>        
+        <Navbar />
         <div className='w-full h-full flex flex-col justify-between'>
             <div className='grid md:grid-cols-2 m-[250px]'>
                 <div className='flex flex-col justify-center md:items-start w-full px-2 py-8'>
@@ -15,10 +17,9 @@ const Home = () => {
                         <span class="relative">Get Started</span>
                     </a>
                 </div>
-
-            </div>
-
+                </div>
         </div>
+        </>
     )
 }
 
