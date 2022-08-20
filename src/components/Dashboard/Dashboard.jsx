@@ -19,7 +19,7 @@ const Dashboard = () => {
               ></input>
             </div>
           </div>
-          <h3 className="text-3xl font-bold  text-indigo-700 my-12 mx-[100px]">
+          <h3 className="text-3xl font-bold  text-[#7953a9] my-12 mx-[100px]">
             Welcome Back User!
           </h3>
         </div>
@@ -35,7 +35,7 @@ const Dashboard = () => {
           </button>
         </div>
       </div>
-      <div className="grid grid-rows-3 grid-flow-col">
+      <div className="grid grid-rows-3 grid-col-2">
         <div className="mx-[200px] my-[-25px] text-5xl font-bold ">
           Overview
         </div>
@@ -45,9 +45,123 @@ const Dashboard = () => {
           </div>
         </div>
 
-        <div className="text-2xl font-light mx-[200px] my-[25px]">
+        <div className="flex text-2xl font-light mx-[200px] my-[25px]">
           Remaining from a $5000 budget
         </div>
+        <table class="mx-[200px] w-[900px]">
+          <thead class="bg-gray-50 border-b-2 border-gray-200">
+            <tr>
+              <th class="p-3 text-sm font-semibold tracking-wide">Users</th>
+              <th class="p-3 text-sm font-semibold tracking-wide">Status</th>
+              <th class="p-3 text-sm font-semibold tracking-wide">Utilities</th>
+              <th class="p-3 text-sm font-semibold tracking-wide">School</th>
+              <th class="p-3 text-sm font-semibold tracking-wide">Groceries</th>
+              <th class="p-3 text-sm font-semibold tracking-wide">Rent</th>
+              <th class="p-3 text-sm font-semibold tracking-wide">Clothes</th>
+              <th class="p-3 text-sm font-semibold tracking-wide">Subscriptions</th>
+              <th class="p-3 text-sm font-semibold tracking-wide">Entertainment</th>
+              <th class="p-3 text-sm font-semibold tracking-wide">Miscellaneous</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="bg-[#c8b7e9]">
+              <td class="p-3 text-sm text-gray-700">
+                <a href="#" class="font-bold text-blue-500 hover:underline">User1</a>
+              </td>
+              <td>
+                <span class="p-1.5 text-xs font-medium uppercase tracking-wider text-red-800 bg-red-200 rounded-lg bg-opacity-50">Owner</span>
+              </td>
+              <td class="p-3 text-sm text-gray-700">$$$</td>
+              <td class="p-3 text-sm text-gray-700">$$$</td>
+              <td class="p-3 text-sm text-gray-700">$$$</td>
+              <td class="p-3 text-sm text-gray-700">$$$</td>
+              <td class="p-3 text-sm text-gray-700">$$$</td>
+              <td class="p-3 text-sm text-gray-700">$$$</td>
+              <td class="p-3 text-sm text-gray-700">$$$</td>
+              <td class="p-3 text-sm text-gray-700">$$$</td>
+            </tr>
+            <tr class="bg-gray-200">
+              <td class="p-3 text-sm text-gray-700">
+                <a href="#" class="font-bold text-blue-500 hover:underline">User2</a>
+              </td>
+              <td>
+                <span class="p-1.5 text-xs font-medium uppercase tracking-wider text-green-800 bg-green-200 rounded-lg bg-opacity-50">Member</span>
+              </td>
+              <td class="p-3 text-sm text-gray-700">$$$</td>
+              <td class="p-3 text-sm text-gray-700">$$$</td>
+              <td class="p-3 text-sm text-gray-700">$$$</td>
+              <td class="p-3 text-sm text-gray-700">$$$</td>
+              <td class="p-3 text-sm text-gray-700">$$$</td>
+              <td class="p-3 text-sm text-gray-700">$$$</td>
+              <td class="p-3 text-sm text-gray-700">$$$</td>
+              <td class="p-3 text-sm text-gray-700">$$$</td>
+            </tr>
+            <tr class="bg-[#c8b7e9]">
+              <td class="p-3 text-sm text-gray-700">
+                <a href="#" class="font-bold text-blue-500 hover:underline">User3</a>
+              </td>
+              <td>
+                <span class="p-1.5 text-xs font-medium uppercase tracking-wider text-green-800 bg-green-200 rounded-lg bg-opacity-50">Member</span>
+              </td>
+              <td class="p-3 text-sm text-gray-700">$$$</td>
+              <td class="p-3 text-sm text-gray-700">$$$</td>
+              <td class="p-3 text-sm text-gray-700">$$$</td>
+              <td class="p-3 text-sm text-gray-700">$$$</td>
+              <td class="p-3 text-sm text-gray-700">$$$</td>
+              <td class="p-3 text-sm text-gray-700">$$$</td>
+              <td class="p-3 text-sm text-gray-700">$$$</td>
+              <td class="p-3 text-sm text-gray-700">$$$</td>
+            </tr>
+            <tr class="bg-gray-200">
+              <td class="p-3 text-sm text-gray-700">
+                <a href="#" class="font-bold text-blue-500 hover:underline">User4</a>
+              </td>
+              <td>
+                <span class="p-1.5 text-xs font-medium uppercase tracking-wider text-green-800 bg-green-200 rounded-lg bg-opacity-50">Member</span>
+              </td>
+              <td class="p-3 text-sm text-gray-700">$$$</td>
+              <td class="p-3 text-sm text-gray-700">$$$</td>
+              <td class="p-3 text-sm text-gray-700">$$$</td>
+              <td class="p-3 text-sm text-gray-700">$$$</td>
+              <td class="p-3 text-sm text-gray-700">$$$</td>
+              <td class="p-3 text-sm text-gray-700">$$$</td>
+              <td class="p-3 text-sm text-gray-700">$$$</td>
+              <td class="p-3 text-sm text-gray-700">$$$</td>
+            </tr>
+            <tr class="bg-[#c8b7e9]">
+              <td class="p-3 text-sm text-gray-700">
+                <a href="#" class="font-bold text-blue-500 hover:underline">User5</a>
+              </td>
+              <td>
+                <span class="p-1.5 text-xs font-medium uppercase tracking-wider text-green-800 bg-green-200 rounded-lg bg-opacity-50">Member</span>
+              </td>
+              <td class="p-3 text-sm text-gray-700">$$$</td>
+              <td class="p-3 text-sm text-gray-700">$$$</td>
+              <td class="p-3 text-sm text-gray-700">$$$</td>
+              <td class="p-3 text-sm text-gray-700">$$$</td>
+              <td class="p-3 text-sm text-gray-700">$$$</td>
+              <td class="p-3 text-sm text-gray-700">$$$</td>
+              <td class="p-3 text-sm text-gray-700">$$$</td>
+              <td class="p-3 text-sm text-gray-700">$$$</td>
+            </tr>
+            <tr class="bg-gray-200">
+              <td class="p-3 text-sm text-gray-700">
+                <a href="#" class="font-bold text-blue-500 hover:underline">User6</a>
+              </td>
+              <td>
+                <span class="p-1.5 text-xs font-medium uppercase tracking-wider text-green-800 bg-green-200 rounded-lg bg-opacity-50">Member</span>
+              </td>
+              <td class="p-3 text-sm text-gray-700">$$$</td>
+              <td class="p-3 text-sm text-gray-700">$$$</td>
+              <td class="p-3 text-sm text-gray-700">$$$</td>
+              <td class="p-3 text-sm text-gray-700">$$$</td>
+              <td class="p-3 text-sm text-gray-700">$$$</td>
+              <td class="p-3 text-sm text-gray-700">$$$</td>
+              <td class="p-3 text-sm text-gray-700">$$$</td>
+              <td class="p-3 text-sm text-gray-700">$$$</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   );
