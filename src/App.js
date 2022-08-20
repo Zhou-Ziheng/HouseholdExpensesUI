@@ -1,5 +1,4 @@
 import "./App.css";
-import Navbar from "./components/Navbar/Navbar";
 import Household from "./pages/Household";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Signup from "./components/Signup/Signup";
@@ -9,7 +8,6 @@ import Signin from "./components/Signin/Signin";
 function App() {
   return (
     <div className="App">
-      <Navbar />
       <Router>
         <Routes>
           {/* <Route exact path="/" element={<Household />} /> */}
@@ -17,6 +15,7 @@ function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/Home" element={<Home />} />
           <Route path="/signin" element={<Signin />} />
+          <Route path="/household" element={<Household />} />
         </Routes>
       </Router>
     </div>

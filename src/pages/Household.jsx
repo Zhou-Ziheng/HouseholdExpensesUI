@@ -1,11 +1,14 @@
 import { fetchHouseholdById } from "../MockData/utils/FetchData";
 import JSONPretty from "react-json-pretty";
+import NavbarDashboard from './NavbarDashboard'
 import "./Household.css";
 
 const Household = ({ id }) => {
   const data = fetchHouseholdById();
 
   return (
+    <>
+    <NavbarDashboard/>
     <div className="household-main-container">
       <div className="household-title">
         <div style={{ display: "inline-block", "align-items": "center" }}>
@@ -33,6 +36,7 @@ const Household = ({ id }) => {
       </div>
       <div></div>
     </div>
+    </>
   );
 };
 
