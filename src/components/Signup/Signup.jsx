@@ -1,5 +1,10 @@
-const Signup = () => {
+import React from 'react'
+import Navbar from '../Navbar/Navbar'
+
+export default function Signup() {
   return (
+    <>     
+    <Navbar />
     <div className='h-[800px] bg-gray-50 flex flex-col justify-center'>
     <div className='max-w-md w-full mx-auto'>
         <div className='text-center font-extrabold text-4xl py-2'> Sign Up To Your Account </div>
@@ -31,13 +36,9 @@ const Signup = () => {
             <div>
                 <button className='w-full py-2 px-4 bg-[#8b74bd] hover:bg-[#7953ab] rounded-md text-white text-sm'>Submit</button>
             </div>
-
-
-
         </form>
     </div>
 </div>
+    </>
   );
 };
-
-export default Signup;
