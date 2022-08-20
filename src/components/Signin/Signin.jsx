@@ -3,7 +3,7 @@ import { useNavigate } from "react-router";
 import { login } from "../../APIs/LoginAPI";
 import Navbar from "../Navbar/Navbar";
 import Cookies from "universal-cookie";
-function Signin() {
+function Signin({ loggedin, setLogin }) {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
 
@@ -15,12 +15,12 @@ function Signin() {
     await login(email, password);
 
     if (cookies.get("userid")) {
-      navigate("../dashboard", { replace: true });
+      setLogin(true);
     }
   };
 
   useEffect(() => {
-    if (cookies.get("userid")) {
+    if (loggedin) {
       navigate("../dashboard", { replace: true });
     }
   });

@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
-import Cookies from "universal-cookie";
 import { signup } from "../../APIs/SignupAPI";
 import Navbar from "../Navbar/Navbar";
 
-const Signup = () => {
+const Signup = ({ loggedin, setLogin }) => {
   const [email, setEmail] = useState("");
   const [fullName, setFullName] = useState("");
   const [password, setPassword] = useState("");
@@ -15,13 +14,12 @@ const Signup = () => {
   const submit = async () => {
     console.log("here");
     await signup(email, fullName, password, householdKey);
+    setLogin(true);
     navigate("../dashboard", { replace: true });
   };
 
-  const cookies = new Cookies();
-
   useEffect(() => {
-    if (cookies.get("userid")) {
+    if (loggedin) {
       navigate("../dashboard", { replace: true });
     }
   });
