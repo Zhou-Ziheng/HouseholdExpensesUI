@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Signin() {
+const Signin = () => {
     return (
         <div className='h-[800px] bg-gray-50 flex flex-col justify-center'>
             <div className='max-w-md w-full mx-auto'>
