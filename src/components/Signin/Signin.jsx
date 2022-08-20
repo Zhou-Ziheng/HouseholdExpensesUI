@@ -23,7 +23,7 @@ function Signin() {
                             <label htmlFor='' className='ml-2 text-sm text-gray-600'>Remember Me</label>
                         </div>
                         <div>
-                            <a href="/help" className='font-medium text-sm text-[#8b74bd]'>Forgot Passowrd?</a>
+                            <a href="/help" className='font-medium text-sm text-[#8b74bd]'>Forgot Password?</a>
                         </div>
                     </div>
                     <div>
