@@ -1,14 +1,14 @@
 .Navbar {
-    height: 60px;
+    height: 80px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: #5265c4;
+    background: #663399;
 }
 
 .Navbar>.nav-logo {
     font-weight: 700;
-    font-size: 21px;
+    font-size: 30px;
     margin: 35px;
     color: #FFFFFF;
 
@@ -16,6 +16,7 @@
 
 .Navbar>.nav-items>a {
     font-size: 16px;
+    font: bold;
     text-decoration: none;
     margin: 20px;
     right: 30px;
