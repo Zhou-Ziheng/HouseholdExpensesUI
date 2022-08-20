@@ -1,16 +1,12 @@
 export function makeHousehold() {
-  const members = [
-    makeMember(1, "John", 100),
-    makeMember(2, "Alex", 2000),
-    makeMember(3, "Joe", 500),
-    makeMember(4, "Steve", 1000),
-  ];
+  const members = [makeMember(1, "John", 100)];
 
   return {
-    householdId: Math.random(1000),
-    totalAllowance: 1000000,
+    householdId: 1,
+    totalUsed: 3020 * 4,
+    totalAllowance: 20000,
     members,
-    name: "test household",
+    name: "Test Household",
   };
 }
 
@@ -20,17 +16,21 @@ export function makeMember(id, name, allowance) {
     username: "test user",
     name,
     allowance,
+    used: 3020,
     expenses: [
       {
         category: "Housing",
+        total: 1000,
         items: [makeItem("res", "wilmot", 1000, Date.now())],
       },
       {
         category: "Education",
+        total: 2000,
         items: [makeItem("Textbooks", "Intro to Quantum", 2000, Date.now())],
       },
       {
         category: "Groceries",
+        total: 20,
         items: [makeItem("Fortinos", "steak", 20, Date.now())],
       },
     ],
