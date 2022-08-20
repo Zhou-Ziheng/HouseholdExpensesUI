@@ -1,11 +1,12 @@
 import { fetchHouseholdById } from "../MockData/utils/FetchData";
+import { Heading } from "@chakra-ui/react";
 
 const Household = ({ id }) => {
   const data = fetchHouseholdById();
 
   return (
     <div>
-      <h1>Household Name: {data.name}</h1>
+      <Heading>{data.name}</Heading>
       <h2>Total Allowance: {data.totalAllowance}</h2>
       <h2>Number of Members: {data.members.length}</h2>
 
