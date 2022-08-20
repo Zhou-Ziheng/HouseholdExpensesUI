@@ -3,8 +3,71 @@ import { BiSearch } from "react-icons/bi";
 import { GiCharacter } from "react-icons/gi";
 import { BsCurrencyDollar } from "react-icons/bs";
 import { AiFillSetting } from "react-icons/ai";
+import { makeHousehold } from "../../MockData/MockData";
 
 const Dashboard = () => {
+  const data = makeHousehold();
+  const { admins } = data;
+  const headers = [
+    "Users",
+    "Status",
+    "Utilities",
+    "School",
+    "Groceries",
+    "Rent",
+    "Clothes",
+    "Subscriptions",
+    "Entertainment",
+    "Miscellaneous",
+  ];
+
+  const getTable = (users) => {
+    const data = [];
+
+    for (let i = 0; i < users.length; i++) {
+      data.push(getMemberRow(users[i], i));
+    }
+
+    return data;
+  };
+
+  const getMemberRow = (user, index) => {
+    const data = [];
+    const id = user.id;
+    data.push(
+      <td class="p-3 text-sm text-gray-700">
+        <a href="#" class="font-bold text-blue-500 hover:underline">
+          {user.name}
+        </a>
+      </td>
+    );
+    if (admins.find((value) => value.id === id)) {
+      data.push(
+        <td>
+          <span class="p-1.5 text-xs font-medium uppercase tracking-wider text-red-800 bg-red-200 rounded-lg bg-opacity-50">
+            Owner
+          </span>
+        </td>
+      );
+    } else {
+      data.push(
+        <td>
+          <span class="p-1.5 text-xs font-medium uppercase tracking-wider text-green-800 bg-green-200 rounded-lg bg-opacity-50">
+            Member
+          </span>
+        </td>
+      );
+    }
+
+    for (let i = 2; i < headers.length; i++) {
+      const amount =
+        user.expenses.find(({ category }) => category === headers[i])?.total ??
+        0;
+      data.push(<td class="p-3 text-sm text-gray-700">{amount.toFixed(2)}</td>);
+    }
+    return <tr class={index % 2 ? "bg-[#c8b7e9]" : "bg-gray-200"}>{data}</tr>;
+  };
+
   return (
     <div>
       <div className="px-[100px] grid grid-cols-2">
@@ -48,124 +111,20 @@ const Dashboard = () => {
         <div className="flex text-2xl font-light mx-[200px] my-[25px]">
           Remaining from a $5000 budget
         </div>
-        <div className="overflow-auto rounded-lg">
-          <table class="mx-[200px] w-[900px]">
-            <thead class="bg-gray-50 border-2 border-gray-200">
-              <tr>
-                <th class="p-3 text-sm font-semibold tracking-wide">Users</th>
-                <th class="p-3 text-sm font-semibold tracking-wide">Status</th>
-                <th class="p-3 text-sm font-semibold tracking-wide">Utilities</th>
-                <th class="p-3 text-sm font-semibold tracking-wide">School</th>
-                <th class="p-3 text-sm font-semibold tracking-wide">Groceries</th>
-                <th class="p-3 text-sm font-semibold tracking-wide">Rent</th>
-                <th class="p-3 text-sm font-semibold tracking-wide">Clothes</th>
-                <th class="p-3 text-sm font-semibold tracking-wide">Subscriptions</th>
-                <th class="p-3 text-sm font-semibold tracking-wide">Entertainment</th>
-                <th class="p-3 text-sm font-semibold tracking-wide">Miscellaneous</th>
-              </tr>
-            </thead>
-            <tbody class="divide-y divide-gray-100">
-              <tr class="bg-[#c8b7e9] hover:bg-[#ac8ed1]">
-                <td class="p-3 text-sm text-gray-700">
-                  <a href="#" class="font-bold text-blue-500 hover:underline">User1</a>
-                </td>
-                <td>
-                  <span class="p-1.5 text-xs font-medium uppercase tracking-wider text-red-800 bg-red-200 rounded-lg bg-opacity-50">Owner</span>
-                </td>
-                <td class="p-3 text-sm text-gray-700">$$$</td>
-                <td class="p-3 text-sm text-gray-700">$$$</td>
-                <td class="p-3 text-sm text-gray-700">$$$</td>
-                <td class="p-3 text-sm text-gray-700">$$$</td>
-                <td class="p-3 text-sm text-gray-700">$$$</td>
-                <td class="p-3 text-sm text-gray-700">100</td>
-                <td class="p-3 text-sm text-gray-700">$$$</td>
-                <td class="p-3 text-sm text-gray-700">$$$</td>
-              </tr>
-              <tr class="bg-gray-200 hover:bg-gray-400">
-                <td class="p-3 text-sm text-gray-700">
-                  <a href="#" class="font-bold text-blue-500 hover:underline">User2</a>
-                </td>
-                <td>
-                  <span class="p-1.5 text-xs font-medium uppercase tracking-wider text-green-800 bg-green-200 rounded-lg bg-opacity-50">Member</span>
-                </td>
-                <td class="p-3 text-sm text-gray-700">$$$</td>
-                <td class="p-3 text-sm text-gray-700">$$$</td>
-                <td class="p-3 text-sm text-gray-700">$$$</td>
-                <td class="p-3 text-sm text-gray-700">$$$</td>
-                <td class="p-3 text-sm text-gray-700">$$$</td>
-                <td class="p-3 text-sm text-gray-700">$$$</td>
-                <td class="p-3 text-sm text-gray-700">$$$</td>
-                <td class="p-3 text-sm text-gray-700">$$$</td>
-              </tr>
-              <tr class="bg-[#c8b7e9] hover:bg-[#ac8ed1]">
-                <td class="p-3 text-sm text-gray-700">
-                  <a href="#" class="font-bold text-blue-500 hover:underline">User3</a>
-                </td>
-                <td>
-                  <span class="p-1.5 text-xs font-medium uppercase tracking-wider text-green-800 bg-green-200 rounded-lg bg-opacity-50">Member</span>
-                </td>
-                <td class="p-3 text-sm text-gray-700">$$$</td>
-                <td class="p-3 text-sm text-gray-700">$$$</td>
-                <td class="p-3 text-sm text-gray-700">$$$</td>
-                <td class="p-3 text-sm text-gray-700">$$$</td>
-                <td class="p-3 text-sm text-gray-700">$$$</td>
-                <td class="p-3 text-sm text-gray-700">$$$</td>
-                <td class="p-3 text-sm text-gray-700">$$$</td>
-                <td class="p-3 text-sm text-gray-700">$$$</td>
-              </tr>
-              <tr class="bg-gray-200 hover:bg-gray-400">
-                <td class="p-3 text-sm text-gray-700">
-                  <a href="#" class="font-bold text-blue-500 hover:underline">User4</a>
-                </td>
-                <td>
-                  <span class="p-1.5 text-xs font-medium uppercase tracking-wider text-green-800 bg-green-200 rounded-lg bg-opacity-50">Member</span>
-                </td>
-                <td class="p-3 text-sm text-gray-700">$$$</td>
-                <td class="p-3 text-sm text-gray-700">$$$</td>
-                <td class="p-3 text-sm text-gray-700">$$$</td>
-                <td class="p-3 text-sm text-gray-700">$$$</td>
-                <td class="p-3 text-sm text-gray-700">$$$</td>
-                <td class="p-3 text-sm text-gray-700">$$$</td>
-                <td class="p-3 text-sm text-gray-700">$$$</td>
-                <td class="p-3 text-sm text-gray-700">$$$</td>
-              </tr>
-              <tr class="bg-[#c8b7e9] hover:bg-[#ac8ed1]">
-                <td class="p-3 text-sm text-gray-700">
-                  <a href="#" class="font-bold text-blue-500 hover:underline">User5</a>
-                </td>
-                <td>
-                  <span class="p-1.5 text-xs font-medium uppercase tracking-wider text-green-800 bg-green-200 rounded-lg bg-opacity-50">Member</span>
-                </td>
-                <td class="p-3 text-sm text-gray-700">$$$</td>
-                <td class="p-3 text-sm text-gray-700">$$$</td>
-                <td class="p-3 text-sm text-gray-700">$$$</td>
-                <td class="p-3 text-sm text-gray-700">$$$</td>
-                <td class="p-3 text-sm text-gray-700">$$$</td>
-                <td class="p-3 text-sm text-gray-700">$$$</td>
-                <td class="p-3 text-sm text-gray-700">$$$</td>
-                <td class="p-3 text-sm text-gray-700">$$$</td>
-              </tr>
-              <tr class="bg-gray-200 hover:bg-gray-400">
-                <td class="p-3 text-sm text-gray-700">
-                  <a href="#" class="font-bold text-blue-500 hover:underline">User6</a>
-                </td>
-                <td>
-                  <span class="p-1.5 text-xs font-medium uppercase tracking-wider text-green-800 bg-green-200 rounded-lg bg-opacity-50">Member</span>
-                </td>
-                <td class="p-3 text-sm text-gray-700">$$$</td>
-                <td class="p-3 text-sm text-gray-700">$$$</td>
-                <td class="p-3 text-sm text-gray-700">$$$</td>
-                <td class="p-3 text-sm text-gray-700">$$$</td>
-                <td class="p-3 text-sm text-gray-700">$$$</td>
-                <td class="p-3 text-sm text-gray-700">$$$</td>
-                <td class="p-3 text-sm text-gray-700">$$$</td>
-                <td class="p-3 text-sm text-gray-700">$$$</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div >
-    </div >
+        <table class="mx-[200px] w-[900px]">
+          <thead class="bg-gray-50 border-b-2 border-gray-200">
+            <tr>
+              {headers.map((header) => (
+                <th class="p-3 text-sm font-semibold tracking-wide">
+                  {header}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>{getTable(data.members)}</tbody>
+        </table>
+      </div>
+    </div>
   );
 };
 
