@@ -2,14 +2,13 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { createFamily } from "../../APIs/CreateHousehold";
 
-const CreateHousehold = ({ loggedin, setLogin }) => {
+const CreateHousehold = ({ loggedin }) => {
   const [familyName, setFamilyName] = useState("");
   const navigate = useNavigate();
 
   const submit = async () => {
     console.log("here");
     await createFamily(familyName);
-    setLogin(true);
     navigate("../dashboard", { replace: true });
   };
 
