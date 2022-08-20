@@ -1,6 +1,4 @@
-import logo from "./logo.svg";
 import "./App.css";
-import { makeHousehold } from "./MockData/MockData";
 import Household from "./pages/Household";
 
 function App() {

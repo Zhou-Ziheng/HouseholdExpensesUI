@@ -1,5 +1,3 @@
-import { useEffect } from "react";
-import { makeHousehold } from "../MockData/MockData";
 import { fetchHouseholdById } from "../MockData/utils/FetchData";
 
 const Household = ({ id }) => {
