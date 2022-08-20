@@ -7,6 +7,5 @@ export const signup = async (email, fullName, password, householdKey) => {
     password: password,
     family: householdKey,
   });
-  console.log("sdfg");
-  return post("family-members/new", payload);
+  return post("family-members/signup", payload);
 };

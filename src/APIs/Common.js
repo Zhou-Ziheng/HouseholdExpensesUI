@@ -1,7 +1,9 @@
 const baseUrl = "http://localhost:3000/api/";
 
 export const get = async (relUrl) => {
-  const response = fetch(baseUrl + relUrl);
+  const response = fetch(baseUrl + relUrl, {
+    credentials: "include",
+  });
   return response;
 };
 

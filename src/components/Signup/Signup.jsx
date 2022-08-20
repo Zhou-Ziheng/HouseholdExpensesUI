@@ -1,19 +1,30 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
 import Cookies from "universal-cookie";
 import { signup } from "../../APIs/SignupAPI";
-import { withRouter } from "react-router-dom";
 import Navbar from "../Navbar/Navbar";
 
-const Signup = withRouter(() => {
+const Signup = () => {
   const [email, setEmail] = useState("");
   const [fullName, setFullName] = useState("");
   const [password, setPassword] = useState("");
   const [householdKey, setHouseholdKey] = useState("");
 
+  const navigate = useNavigate();
+
   const submit = async () => {
     console.log("here");
     await signup(email, fullName, password, householdKey);
+    navigate("../dashboard", { replace: true });
   };
+
+  const cookies = new Cookies();
+
+  useEffect(() => {
+    if (cookies.get("userid")) {
+      navigate("../dashboard", { replace: true });
+    }
+  });
 
   return (
     <>
@@ -119,6 +130,6 @@ const Signup = withRouter(() => {
       </div>
     </>
   );
-});
+};
 
 export default Signup;
