@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 import { login } from "../../APIs/LoginAPI";
-import Navbar from "../Navbar/Navbar";
 import Cookies from "universal-cookie";
 function Signin({ loggedin, setLogin }) {
   const [email, setEmail] = useState();
@@ -27,7 +26,6 @@ function Signin({ loggedin, setLogin }) {
 
   return (
     <>
-      <Navbar />
       <div className="h-[800px] bg-gray-50 flex flex-col justify-center">
         <div className="max-w-md w-full mx-auto">
           <div className="text-center font-extrabold text-4xl py-2">

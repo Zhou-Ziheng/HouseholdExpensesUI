@@ -3,11 +3,12 @@ import { BiSearch } from 'react-icons/bi';
 import { GiCharacter } from 'react-icons/gi';
 import { BsCurrencyDollar } from 'react-icons/bs';
 import { AiFillSetting } from 'react-icons/ai';
-
+import NavbarDashboard from '../../pages/NavbarDashboard'
 
 const Dashboard = () => {
     return (
         <div>
+            <NavbarDashboard/>
             <div className='px-[100px] grid grid-cols-2'>
                 <div>
                     <div className='pt-14 max-w-6xl mx-[100px]'>

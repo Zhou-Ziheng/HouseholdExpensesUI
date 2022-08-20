@@ -13,7 +13,6 @@ const Navbar = () => {
         <a className="font-bold bg-[#4066E0] py-4 px-6 rounded opacity-100" href="/signin">
           Sign In
         </a>
-        <a className='font-bold' href='/Dashboard'>Dashboard</a>
       </div>
     </div>
   );

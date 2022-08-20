@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { signup } from "../../APIs/SignupAPI";
-import Navbar from "../Navbar/Navbar";
 
 const Signup = ({ loggedin, setLogin }) => {
   const [email, setEmail] = useState("");
@@ -26,7 +25,6 @@ const Signup = ({ loggedin, setLogin }) => {
 
   return (
     <>
-      <Navbar />
       <div className="h-[800px] bg-gray-50 flex flex-col justify-center">
         <div className="max-w-md w-full mx-auto">
           <div className="text-center font-extrabold text-4xl py-2">

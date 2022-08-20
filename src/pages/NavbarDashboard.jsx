@@ -8,12 +8,9 @@ export default function NavbarDashboard() {
         <img src={logo} alt="logo" height="300" width="180"/>
       </a>
       <div className="nav-items">
-          <a href="/Dashboard">
-              Dashboard
-          </a>
-          <a href="#">
-              Log Out
-          </a>
+          <a href="/Dashboard">Dashboard</a>
+          <a href="/AddExpenses">Add Expenses</a>
+          <a href="#">Log Out</a>
       </div>
     </div>
   );
