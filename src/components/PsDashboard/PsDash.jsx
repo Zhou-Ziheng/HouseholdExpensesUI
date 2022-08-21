@@ -49,7 +49,7 @@ export default function PsDash({ loggedin, id }) {
     } else {
       navigate("../signin", { replace: true });
     }
-  });
+  }, []);
 
   const getCategoryRow = () => {
     const render = [];
