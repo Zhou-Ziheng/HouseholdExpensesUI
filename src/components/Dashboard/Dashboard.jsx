@@ -38,7 +38,7 @@ const Dashboard = ({ id, loggedin }) => {
       navigate("../signin", { replace: true });
     }
   }, []);
-  console.log(perData)
+  console.log(perData);
   useEffect(() => {
     async function fetchData() {
       const response = await getHouseholdData(familyId);
@@ -80,6 +80,15 @@ const Dashboard = ({ id, loggedin }) => {
     }
     return sum;
   };
+
+  const totalAllowance = (users) => {
+    let sum = 0;
+    for (let i = 0; i < users.length; i++) {
+      sum += users[i]?.allowance ?? 0;
+    }
+    return sum;
+  };
+
   const getMemberRow = (user, index) => {
     const data = [];
     const id = user._id;
@@ -137,7 +146,12 @@ const Dashboard = ({ id, loggedin }) => {
             </div>
           </div>
           <h3 className=" flex text-3xl   text-[rgb(161,93,244)] my-18 mx-[100px]">
-            Welcome Back, <span className="text-[#7953a9] font-bold mt-[-50]">{perData?.name}</span>!
+            Welcome Back,{" "}
+            <span className="text-[#7953a9] font-bold mt-[-50]">
+              {"  "}
+              {perData?.name}
+            </span>
+            !
           </h3>
         </div>
         <div className="flex px-[475px] pt-14 py-[140px] space-x-20">
@@ -154,16 +168,21 @@ const Dashboard = ({ id, loggedin }) => {
       </div>
       <div className="grid grid-rows-3 grid-col-2">
         <div className="mx-[200px] my-[-25px] text-5xl font-bold ">
-          Overview, <a href="/psdash" className="text-4xl text-neutral-700">see more</a>
+          Overview,{" "}
+          <a href="/psdash" className="text-4xl text-neutral-700">
+            see more
+          </a>
         </div>
         <div className="flex flex-row-2">
           <div className="text-[#008000] mx-[200px] my-[-30px] text-7xl font-bold box-content h-20 w-flex p-4 border-4">
-            ${sourceData?.totalAllowance - totalUsed(sourceData.familyMembers)}
+            $
+            {totalAllowance(sourceData.familyMembers) -
+              totalUsed(sourceData.familyMembers)}
           </div>
         </div>
 
         <div className="flex text-2xl font-light mx-[200px] my-[25px]">
-          Remaining from a ${sourceData?.totalAllowance} budget
+          Remaining from a ${totalAllowance(sourceData.familyMembers)} budget
         </div>
         <table class="mx-[200px] w-[900px]">
           <thead class="bg-gray-50 border-b-2 border-gray-200">

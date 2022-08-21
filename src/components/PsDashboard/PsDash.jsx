@@ -2,11 +2,13 @@ import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router";
 import getMemberData from "../../APIs/getMemberData";
 import Modal from "react-bootstrap/Modal";
+import { FaEdit, FaIcons } from "react-icons/fa";
 import Form from "react-bootstrap/Form";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { makeItem } from "../../APIs/makeItem";
 import { addOneToCategory } from "../../APIs/addOneToCategory";
 import { addNewToCategory } from "../../APIs/addNewCategory";
+import { changeMemberAllowance } from "../../APIs/changeMemberAllowance";
 
 const headers = [
   "Utilities",
@@ -25,6 +27,10 @@ export default function PsDash({ loggedin, id }) {
   const navigate = useNavigate();
 
   const [show, setShow] = useState(false);
+
+  const [allowance, setAllowance] = useState(0);
+  const [allowanceModal, setAllowanceModal] = useState(false);
+
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
@@ -82,7 +88,7 @@ export default function PsDash({ loggedin, id }) {
     } else {
       navigate("../signin", { replace: true });
     }
-  }, [id, loggedin, navigate, show]);
+  }, [id, loggedin, navigate, show, allowanceModal]);
 
   const getCategoryRow = () => {
     const render = [];
@@ -211,7 +217,26 @@ export default function PsDash({ loggedin, id }) {
         <Modal.Header closeButton>
           <Modal.Title>{head} Expenses</Modal.Title>
         </Modal.Header>
-        <p>{JSON.stringify(history)}</p>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Title</th>
+              <th scope="col">Cost</th>
+              <th scope="col">Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            {history.map((item, index) => (
+              <tr>
+                <th scope="row">{index + 1}</th>
+                <td>{item.title}</td>
+                <td>${item.cost}</td>
+                <td>{item.date}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </Modal>
       <div className="flex flex-col-2">
         <div>
@@ -223,6 +248,49 @@ export default function PsDash({ loggedin, id }) {
           </h1>
           <h3 className="text-2xl font-light mx-[200px] my-[45px]">
             ${perData?.used} used out of ${perData?.allowance}
+            <button className="px-5 transition hover:scale-110 ease-in-out duration-100">
+              <FaEdit size={25} onClick={() => setAllowanceModal(true)} />
+              <Modal
+                show={allowanceModal}
+                onHide={() => setAllowanceModal(false)}
+              >
+                <Modal.Header closeButton>
+                  <Modal.Title>Change Allowances</Modal.Title>
+                </Modal.Header>
+
+                <Form>
+                  <Form.Group className="mt-3" controlId="ControlInput1">
+                    <Form.Label>Allowance</Form.Label>
+                  </Form.Group>
+                  <Form.Control
+                    value={allowance}
+                    onChange={(e) => setAllowance(e.target.value)}
+                    type="number"
+                    placeholder="Insert Amount"
+                    autoFocus
+                  />
+                </Form>
+                <Modal.Footer>
+                  <button
+                    className="bg-[#8b74bd] px-3 py-3 rounded text-white"
+                    variant="secondary"
+                    onClick={() => setAllowanceModal(false)}
+                  >
+                    Close
+                  </button>
+                  <button
+                    className="bg-[#8b74bd] px-3 py-3 rounded text-white"
+                    variant="primary"
+                    onClick={async () => {
+                      await changeMemberAllowance(id, allowance);
+                      setAllowanceModal(false);
+                    }}
+                  >
+                    Set
+                  </button>
+                </Modal.Footer>
+              </Modal>
+            </button>
           </h3>
         </div>
         <div className="mx-auto my-auto">
