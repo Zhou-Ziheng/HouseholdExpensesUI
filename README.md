@@ -51,14 +51,19 @@ The personal expense tracker is assigned to each user, displaying their own expe
 - Setting up different levels of permission to allow people to view other family member’s usage
 
 <p align="center">
+  <h3><strong>Landing Page</strong></h3>
   <img src="readmephoto/original.png">
+  <h3><strong>Personnal Dashboard</strong></h3>
   <img src="readmephoto/original (1).png">
+  <h3><strong>Dashboard</strong></h3>
   <img src="readmephoto/original (2).png">
+  <h3><strong>Add Expenses</strong></h3>
   <img src="readmephoto/original (3).png">
+  <h3><strong>Contact Page</strong></h3>
   <img src="readmephoto/original (4).png">
 </p>
 
-Backend Repo : https://github.com/SparkyFnay/HouseholdExpensesServer
+Backend Repo : https://github.com/SparkyFnay/HouseholdExpensesServer </br>
 DevPost : https://devpost.com/software/track-pwrn7y
 
 Developped during HackThe6ix '22
