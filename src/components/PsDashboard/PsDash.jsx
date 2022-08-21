@@ -45,7 +45,6 @@ export default function PsDash({ loggedin, id }) {
             data.categories.forEach((category) =>
                 dict.set(category.category.toUpperCase(), category.items)
             );
-
             map.current = dict;
             console.log(map.current);
         };
@@ -55,6 +54,7 @@ export default function PsDash({ loggedin, id }) {
             navigate("../signin", { replace: true });
         }
     });
+
 
     const getCategoryRow = () => {
         const render = [];
