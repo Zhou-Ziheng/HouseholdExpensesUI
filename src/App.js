@@ -43,9 +43,12 @@ function App() {
           />
           <Route
             path="/Dashboard"
-            element={<Dashboard id={cookies.get("userid")} />}
+            element={<Dashboard id={cookies.get("userid")} loggedin={login} />}
           />
-          <Route path="/PsDash" element={<PsDash />} />
+          <Route
+            path="/PsDash"
+            element={<PsDash loggedin={login} id={cookies.get("userid")} />}
+          />
           <Route path="/household" element={<Household />} />
           <Route path="/addexpenses" element={<AddExpenses />} />
           <Route path="/Help" element={<Help />} />

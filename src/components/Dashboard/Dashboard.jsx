@@ -5,18 +5,25 @@ import { BsCurrencyDollar } from "react-icons/bs";
 import { AiFillSetting } from "react-icons/ai";
 import getMemberData from "../../APIs/getMemberData";
 import getHouseholdData from "../../APIs/getHouseholdData";
+import { useNavigate } from "react-router";
 
-const Dashboard = ({ id }) => {
+const Dashboard = ({ id, loggedin }) => {
   const [familyId, setFamilyId] = useState();
   const [sourceData, setSourceData] = useState({ familyMembers: [] });
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function fetchData() {
       const user = await getMemberData(id);
       setFamilyId((await user.json()).familyId);
     }
-    fetchData();
-  }, []);
+    if (loggedin) {
+      fetchData();
+    } else {
+      navigate("../signin", { replace: true });
+    }
+  }, [id, loggedin, navigate]);
 
   useEffect(() => {
     async function fetchData() {
@@ -29,7 +36,6 @@ const Dashboard = ({ id }) => {
     }
   }, [familyId]);
 
-  const { admins } = sourceData;
   const headers = [
     "Users",
     "Status",
