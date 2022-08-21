@@ -1,5 +1,6 @@
 import helpImg from "../../image/helpimage.png";
 import React, { useState } from 'react';
+import emailjs from 'emailjs-com';
 
 const Result = () => {
     return (
@@ -11,15 +12,24 @@ const Result = () => {
 
 const Help = () => {
     const [result, showResult] = useState(false);
+
     const sendEmail = (e) => {
+        e.preventDefault();
+
+        emailjs.sendForm('service_djqd892', 'template_sma0zmp', e.target, 'O4pgm2rqmFBX5nBpR').then(
+            (result) => {
+                console.log(result.text);
+            },
+            (error) => {
+                console.log(error.text);
+            }
+        )
         showResult(true);
     }
 
     setTimeout(() => {
         showResult(false);
     }, 5000);
-
-
 
 
     return (
