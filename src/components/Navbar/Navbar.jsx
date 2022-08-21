@@ -40,6 +40,7 @@ const Navbar = ({ loggedin, setLogin }) => {
           <div className="nav-items">
             <a href="/Dashboard">Dashboard</a>
             <a href="/AddExpenses">Add Expenses</a>
+            <a href="/help">Help</a>
             <a
               onClick={() => {
                 cookies.remove("userid");
