@@ -70,21 +70,19 @@ export default function PsDash({ loggedin, id }) {
       const user = await getMemberData(id);
       const data = await user.json();
       setPerData(data);
-      console.log(data.categories);
       const dict = new Map();
       headers.forEach((header) => dict.set(header.toUpperCase(), []));
       data.categories.forEach((category) =>
         dict.set(category.category.toUpperCase(), category.items)
       );
       map.current = dict;
-      console.log(map.current);
     };
     if (loggedin) {
       fetch();
     } else {
       navigate("../signin", { replace: true });
     }
-  });
+  }, [id, loggedin, navigate, show]);
 
   const getCategoryRow = () => {
     const render = [];
