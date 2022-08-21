@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import getMemberData from "../../APIs/getMemberData";
+import Modal from "react-bootstrap/Modal";
+import Form from "react-bootstrap/Form";
 
 const headers = [
   "Users",
