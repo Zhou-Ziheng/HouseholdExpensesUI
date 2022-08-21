@@ -9,7 +9,7 @@ const JoinHousehold = ({ loggedin }) => {
   const submit = async () => {
     console.log("here");
     await joinFamily(key);
-    navigate("../dashboard", { replace: true });
+    navigate("../PsDash", { replace: true });
   };
 
   useEffect(() => {

@@ -14,12 +14,12 @@ const Signup = ({ loggedin, setLogin }) => {
     console.log("here");
     await signup(email, fullName, password, householdKey);
     setLogin(true);
-    navigate("../dashboard", { replace: true });
+    navigate("../PsDash", { replace: true });
   };
 
   useEffect(() => {
     if (loggedin) {
-      navigate("../dashboard", { replace: true });
+      navigate("../PsDash", { replace: true });
     }
   });
 

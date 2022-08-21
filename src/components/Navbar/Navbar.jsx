@@ -1,11 +1,30 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Cookies from "universal-cookie";
+import getMemberData from "../../APIs/getMemberData";
 import logo from "../../image/logo1.svg";
 import "./Navbar.css";
 
 const Navbar = ({ loggedin, setLogin }) => {
   const cookies = new Cookies();
 
+  const [hasFamily, setHasFamily] = useState(false);
+
+  useEffect(() => {
+    const fetch = async () => {
+      const data = await getMemberData(cookies.get("userid"));
+      const parsed = await data.json();
+      if (parsed.familyId === "") {
+        setHasFamily(false);
+      } else {
+        setHasFamily(true);
+      }
+    };
+    if (cookies.get("userid") != null) {
+      fetch();
+    }
+  }, [cookies, loggedin]);
+
+  console.log(hasFamily);
   if (!loggedin) {
     return (
       <div class="Shadow">
@@ -38,8 +57,9 @@ const Navbar = ({ loggedin, setLogin }) => {
             <img src={logo} alt="logo" height="300" width="180" />
           </a>
           <div className="nav-items">
-            <a href="/Dashboard">Dashboard</a>
-            <a href="/AddExpenses">Add Expenses</a>
+            {hasFamily && <a href="/Dashboard">Dashboard</a>}
+            {!hasFamily && <a href="/createFamily">Create Family</a>}
+            <a href="/PsDash">Personal Dashboard</a>
             <a href="/help">Help</a>
             <a
               onClick={() => {

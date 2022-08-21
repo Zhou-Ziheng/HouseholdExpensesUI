@@ -73,6 +73,13 @@ const Dashboard = ({ id, loggedin }) => {
     return data;
   };
 
+  const totalUsed = (users) => {
+    let sum = 0;
+    for (let i = 0; i < users.length; i++) {
+      sum += users[i]?.used ?? 0;
+    }
+    return sum;
+  };
   const getMemberRow = (user, index) => {
     const data = [];
     const id = user._id;
@@ -106,8 +113,9 @@ const Dashboard = ({ id, loggedin }) => {
     for (let i = 2; i < headers.length; i++) {
       console.log(user.categories);
       const amount =
-        user.categories.find(({ category }) => category === headers[i])
-          ?.totalAmount ?? 0;
+        user.categories.find(
+          ({ category }) => category.toUpperCase() === headers[i].toUpperCase()
+        )?.totalAmount ?? 0;
       data.push(<td class="p-3 text-sm text-gray-700">{amount.toFixed(2)}</td>);
     }
     return <tr class={index % 2 ? "bg-[#c8b7e9]" : "bg-gray-200"}>{data}</tr>;
@@ -150,12 +158,12 @@ const Dashboard = ({ id, loggedin }) => {
         </div>
         <div className="flex flex-row-2">
           <div className="text-[#008000] mx-[200px] my-[-30px] text-7xl font-bold box-content h-20 w-flex p-4 border-4">
-            $2000
+            ${sourceData?.totalAllowance - totalUsed(sourceData.familyMembers)}
           </div>
         </div>
 
         <div className="flex text-2xl font-light mx-[200px] my-[25px]">
-          Remaining from a $5000 budget
+          Remaining from a ${sourceData?.totalAllowance} budget
         </div>
         <table class="mx-[200px] w-[900px]">
           <thead class="bg-gray-50 border-b-2 border-gray-200">
