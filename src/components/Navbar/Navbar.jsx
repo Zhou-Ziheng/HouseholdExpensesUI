@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Cookies from "universal-cookie";
 import getMemberData from "../../APIs/getMemberData";
-import logo from "../../image/logo1.svg";
+import logo from "../../image/logotrack3.svg";
 import "./Navbar.css";
 
 const Navbar = ({ loggedin, setLogin }) => {
