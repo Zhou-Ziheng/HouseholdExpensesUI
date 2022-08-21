@@ -29,6 +29,7 @@ export const put = async (relUrl, payload) => {
     headers: {
       "Content-Type": "application/json",
     },
+    credentials: "include",
   });
   return response;
 };

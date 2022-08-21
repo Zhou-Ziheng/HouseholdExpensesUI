@@ -4,10 +4,12 @@ import getMemberData from "../../APIs/getMemberData";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { setSelectionRange } from "@testing-library/user-event/dist/utils";
+import { makeItem } from "../../APIs/makeItem";
+import { addOneToCategory } from "../../APIs/addOneToCategory";
+import { addNewToCategory } from "../../APIs/addNewCategory";
 
 const headers = [
-  "Users",
-  "Status",
   "Utilities",
   "School",
   "Groceries",
@@ -25,6 +27,11 @@ export default function PsDash({ loggedin, id }) {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  const [title, setTitle] = useState("");
+  const [desc, setDesc] = useState("");
+  const [category, setCategory] = useState("");
+  const [amount, setAmount] = useState(0);
+
   const map = useRef();
 
   const navigate = useNavigate();
@@ -34,7 +41,6 @@ export default function PsDash({ loggedin, id }) {
       const user = await getMemberData(id);
       const data = await user.json();
       setPerData(data);
-      console.log(data.categories);
       const dict = new Map();
       headers.forEach((header) => dict.set(header.toUpperCase(), []));
       data.categories.forEach((category) =>
@@ -42,14 +48,13 @@ export default function PsDash({ loggedin, id }) {
       );
 
       map.current = dict;
-      console.log(map.current);
     };
     if (loggedin) {
-      fetch();
+      setTimeout(() => fetch(), 500);
     } else {
       navigate("../signin", { replace: true });
     }
-  }, []);
+  }, [id, loggedin, navigate, show]);
 
   const getCategoryRow = () => {
     const render = [];
@@ -84,21 +89,42 @@ export default function PsDash({ loggedin, id }) {
             <Form.Group className="" controlId="ControlInput2">
               <Form.Label>Title</Form.Label>
             </Form.Group>
-            <Form.Control type="text" placeholder="Insert Title" autoFocus />
+            <Form.Control
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              type="text"
+              placeholder="Insert Title"
+              autoFocus
+            />
 
             <Form.Group className="mt-3" controlId="ControlInput3">
               <Form.Label>Description</Form.Label>
             </Form.Group>
-            <Form.Control as="textarea" rows={5} />
+            <Form.Control
+              value={desc}
+              onChange={(e) => setDesc(e.target.value)}
+              as="textarea"
+              rows={5}
+            />
 
             <Form.Group className="mt-3" controlId="ControlInput1">
               <Form.Label>Amount</Form.Label>
             </Form.Group>
-            <Form.Control type="text" placeholder="Insert Amount" autoFocus />
+            <Form.Control
+              value={amount}
+              onChange={(e) => setAmount(e.target.value)}
+              type="number"
+              placeholder="Insert Amount"
+              autoFocus
+            />
 
             <Form.Group className="mt-3" controlId="ControlInput4">
               <Form.Label>Category</Form.Label>
-              <Form.Select aria-label="Select" placeholder="Select A Category">
+              <Form.Select
+                aria-label="Select"
+                placeholder="Select A Category"
+                onChange={(e) => setCategory(e.target.value)}
+              >
                 <option value="" disabled selected>
                   Select A Category
                 </option>
@@ -125,7 +151,23 @@ export default function PsDash({ loggedin, id }) {
           <button
             className="bg-[#8b74bd] px-3 py-3 rounded text-white"
             variant="primary"
-            onClick={handleClose}
+            onClick={async () => {
+              handleClose();
+              const item = await makeItem(title, desc, amount, Date.now());
+              const response = await item.json();
+              const itemId = response._id;
+
+              const cat = perData.categories.find(
+                (ca) => ca.category.toUpperCase() === category.toUpperCase()
+              );
+
+              if (cat !== undefined) {
+                await addOneToCategory(itemId, cat._id);
+              } else {
+                console.log(category, itemId, id);
+                await addNewToCategory(category, itemId, id);
+              }
+            }}
           >
             Add Expenses
           </button>
