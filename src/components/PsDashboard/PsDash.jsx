@@ -123,9 +123,9 @@ export default function PsDash({ loggedin, id }) {
           </button>
         </div>
       </div>
-      <div class="my-[-25px] mx-[-175px] rounded relative sm:rounded-lg">
-        <table class="w-4/6 text-sm mx-auto text-left rounded text-gray-400">
-          <caption class="p-5 text-lg font-semibold rounded text-left text-white bg-[#8b74bd]">
+      <div className="my-[-25px] mx-[0px] rounded relative sm:rounded-lg">
+        <table className="w-4/6 text-sm mx-auto text-left rounded text-gray-400">
+          <caption className="p-5 text-lg font-semibold rounded text-left text-white bg-[#8b74bd]">
             Expenses
             <p class="mt-1 text-sm font-normal text-gray-200">
               Table of {perData?.name}'s expenses sorted through categories
@@ -133,12 +133,12 @@ export default function PsDash({ loggedin, id }) {
               Entertainment, Miscellaneous) and amount of each category.
             </p>
           </caption>
-          <thead class="rounded text-xs uppercase bg-gray-700 text-gray-400">
+          <thead className="rounded text-xs uppercase bg-gray-700 text-gray-400">
             <tr>
-              <th scope="col" class="py-3 px-6">
+              <th scope="col" className="py-3 px-6">
                 Category
               </th>
-              <th scope="col" class="py-3 px-6">
+              <th scope="col" className="py-3 px-6">
                 Used
               </th>
             </tr>
