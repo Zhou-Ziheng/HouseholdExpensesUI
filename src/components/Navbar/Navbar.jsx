@@ -14,6 +14,9 @@ const Navbar = ({ loggedin, setLogin }) => {
             <img src={logo} alt="logo" height="300" width="180" />
           </a>
           <div className="nav-items">
+            <a className="font-bold" href="/help">
+              Help
+            </a>
             <a className="font-bold" href="/signup">
               Sign Up
             </a>
