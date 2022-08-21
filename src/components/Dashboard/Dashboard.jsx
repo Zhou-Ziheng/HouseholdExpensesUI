@@ -1,13 +1,35 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { BiSearch } from "react-icons/bi";
 import { GiCharacter } from "react-icons/gi";
 import { BsCurrencyDollar } from "react-icons/bs";
 import { AiFillSetting } from "react-icons/ai";
-import { makeHousehold } from "../../MockData/MockData";
+import getMemberData from "../../APIs/getMemberData";
+import getHouseholdData from "../../APIs/getHouseholdData";
 
-const Dashboard = () => {
-  const data = makeHousehold();
-  const { admins } = data;
+const Dashboard = ({ id }) => {
+  const [familyId, setFamilyId] = useState();
+  const [sourceData, setSourceData] = useState({ familyMembers: [] });
+
+  useEffect(() => {
+    async function fetchData() {
+      const user = await getMemberData(id);
+      setFamilyId((await user.json()).familyId);
+    }
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    async function fetchData() {
+      const response = await getHouseholdData(familyId);
+      const dat = await response.json();
+      setSourceData(dat);
+    }
+    if (familyId) {
+      fetchData();
+    }
+  }, [familyId]);
+
+  const { admins } = sourceData;
   const headers = [
     "Users",
     "Status",
@@ -33,7 +55,7 @@ const Dashboard = () => {
 
   const getMemberRow = (user, index) => {
     const data = [];
-    const id = user.id;
+    const id = user._id;
     data.push(
       <td class="p-3 text-sm text-gray-700">
         <a href="#" class="font-bold text-blue-500 hover:underline">
@@ -41,7 +63,12 @@ const Dashboard = () => {
         </a>
       </td>
     );
-    if (admins.find((value) => value.id === id)) {
+    const { admins } = sourceData;
+    console.log("admin", admins[0]._id);
+    const find = admins.find((value) => value._id === id);
+    console.log("find result", find);
+    if (admins && find) {
+      console.log(id);
       data.push(
         <td>
           <span class="p-1.5 text-xs font-medium uppercase tracking-wider text-red-800 bg-red-200 rounded-lg bg-opacity-50">
@@ -50,6 +77,7 @@ const Dashboard = () => {
         </td>
       );
     } else {
+      console.log(id);
       data.push(
         <td>
           <span class="p-1.5 text-xs font-medium uppercase tracking-wider text-green-800 bg-green-200 rounded-lg bg-opacity-50">
@@ -61,8 +89,8 @@ const Dashboard = () => {
 
     for (let i = 2; i < headers.length; i++) {
       const amount =
-        user.expenses.find(({ category }) => category === headers[i])?.total ??
-        0;
+        user.categories.find(({ category }) => category === headers[i])
+          ?.total ?? 0;
       data.push(<td class="p-3 text-sm text-gray-700">{amount.toFixed(2)}</td>);
     }
     return <tr class={index % 2 ? "bg-[#c8b7e9]" : "bg-gray-200"}>{data}</tr>;
@@ -72,6 +100,7 @@ const Dashboard = () => {
     <div>
       <div className="px-[100px] grid grid-cols-2">
         <div>
+          <p>{familyId}</p>
           <div className="pt-14 max-w-6xl mx-[100px]">
             <div className="border border-gray-300 rounded w-[900px] flex py-3 items-center px-3">
               <BiSearch className="mr-2" />
@@ -121,7 +150,7 @@ const Dashboard = () => {
               ))}
             </tr>
           </thead>
-          <tbody>{getTable(data.members)}</tbody>
+          <tbody>{getTable(sourceData.familyMembers)}</tbody>
         </table>
       </div>
     </div>

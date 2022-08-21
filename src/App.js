@@ -39,7 +39,10 @@ function App() {
             path="/signin"
             element={<Signin loggedin={login} setLogin={setLogin} />}
           />
-          <Route path="/Dashboard" element={<Dashboard />} />
+          <Route
+            path="/Dashboard"
+            element={<Dashboard id={cookies.get("userid")} />}
+          />
           <Route path="/PsDash" element={<PsDash />} />
           <Route path="/household" element={<Household />} />
           <Route path="/addexpenses" element={<AddExpenses />} />

@@ -102,7 +102,7 @@ const Signup = ({ loggedin, setLogin }) => {
                 House Hold Key
               </label>
               <input
-                type="number"
+                type="text"
                 placeholder="Optional"
                 className="w-full p-2 border border-gray-300 rounded mt-1 "
                 onChange={(changeEvent) =>
