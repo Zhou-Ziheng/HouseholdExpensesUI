@@ -11,6 +11,8 @@ import Cookies from "universal-cookie";
 import Navbar from "./components/Navbar/Navbar";
 import CreateHousehold from "./components/CreateHousehold/CreateHousehold";
 import PsDash from "./components/PsDashboard/PsDash";
+import Help from "./components/Help/Help";
+
 function App() {
   const cookies = useMemo(() => new Cookies(), []);
 
@@ -46,6 +48,7 @@ function App() {
           <Route path="/PsDash" element={<PsDash />} />
           <Route path="/household" element={<Household />} />
           <Route path="/addexpenses" element={<AddExpenses />} />
+          <Route path="/Help" element={<Help />} />
         </Routes>
       </Router>
     </div>
