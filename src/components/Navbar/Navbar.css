@@ -3,7 +3,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: #663399;
+    background: #663399
 }
 
 .Navbar>.nav-logo {
@@ -27,4 +27,9 @@
 
 .Navbar>.nav-items>a:hover {
     opacity: 1;
+}
+
+.Shadow {
+    position: relative;
+    box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5)
 }

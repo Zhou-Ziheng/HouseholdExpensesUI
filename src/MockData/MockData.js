@@ -1,10 +1,12 @@
 export function makeHousehold() {
-  const members = [makeMember(1, "John", 100)];
+  const admins = [makeMember(1, "John", 100)];
+  const members = [makeMember(1, "John", 100), makeMember(2, "Jim", 100)];
 
   return {
     householdId: 1,
     totalUsed: 3020 * 4,
     totalAllowance: 20000,
+    admins,
     members,
     name: "Test Household",
   };
@@ -24,7 +26,7 @@ export function makeMember(id, name, allowance) {
         items: [makeItem("res", "wilmot", 1000, Date.now())],
       },
       {
-        category: "Education",
+        category: "School",
         total: 2000,
         items: [makeItem("Textbooks", "Intro to Quantum", 2000, Date.now())],
       },
