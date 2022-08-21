@@ -40,6 +40,12 @@ export default function AddExpenses() {
                 <option value="Housing">Housing</option>
                 <option value="Education">Education</option>
                 <option value="Groceries">Groceries</option>
+                <option value="Rent">Rent</option>
+                <option value="Clothes">Clothes</option>
+                <option value="Subsciptions">Subsciptions</option>
+                <option value="Miscellaneous">Miscellaneous</option>
+                <option value="Entertainment">Entertainment</option>
+
               </select>
             </div>
             <div>
