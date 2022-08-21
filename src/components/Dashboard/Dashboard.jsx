@@ -10,6 +10,8 @@ import { useNavigate } from "react-router";
 const Dashboard = ({ id, loggedin }) => {
   const [familyId, setFamilyId] = useState();
   const [sourceData, setSourceData] = useState({ familyMembers: [] });
+  const [perData, setPerData] = useState();
+  const [show, setShow] = useState(false);
 
   const navigate = useNavigate();
 
@@ -25,6 +27,18 @@ const Dashboard = ({ id, loggedin }) => {
     }
   }, [id, loggedin, navigate]);
 
+  useEffect(() => {
+    const fetch = async () => {
+      const user = await getMemberData(id);
+      setPerData(await user.json());
+    };
+    if (loggedin) {
+      fetch();
+    } else {
+      navigate("../signin", { replace: true });
+    }
+  }, []);
+  console.log(perData)
   useEffect(() => {
     async function fetchData() {
       const response = await getHouseholdData(familyId);
@@ -122,8 +136,8 @@ const Dashboard = ({ id, loggedin }) => {
               ></input>
             </div>
           </div>
-          <h3 className="text-3xl font-bold  text-[#7953a9] my-12 mx-[100px]">
-            Welcome Back User!
+          <h3 className=" flex text-3xl   text-[rgb(161,93,244)] my-18 mx-[100px]">
+            Welcome Back, <span className="text-[#7953a9] font-bold mt-[-50]">{perData?.name}</span>!
           </h3>
         </div>
         <div className="flex px-[475px] pt-14 py-[140px] space-x-20">
@@ -140,7 +154,7 @@ const Dashboard = ({ id, loggedin }) => {
       </div>
       <div className="grid grid-rows-3 grid-col-2">
         <div className="mx-[200px] my-[-25px] text-5xl font-bold ">
-          Overview
+          Overview, <a href="/psdash" className="text-4xl text-neutral-700">see more</a>
         </div>
         <div className="flex flex-row-2">
           <div className="text-[#008000] mx-[200px] my-[-30px] text-7xl font-bold box-content h-20 w-flex p-4 border-4">

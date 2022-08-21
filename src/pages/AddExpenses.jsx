@@ -45,7 +45,6 @@ export default function AddExpenses() {
                 <option value="Subsciptions">Subsciptions</option>
                 <option value="Miscellaneous">Miscellaneous</option>
                 <option value="Entertainment">Entertainment</option>
-
               </select>
             </div>
             <div>

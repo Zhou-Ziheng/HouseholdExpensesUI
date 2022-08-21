@@ -4,7 +4,6 @@ import getMemberData from "../../APIs/getMemberData";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { setSelectionRange } from "@testing-library/user-event/dist/utils";
 import { makeItem } from "../../APIs/makeItem";
 import { addOneToCategory } from "../../APIs/addOneToCategory";
 import { addNewToCategory } from "../../APIs/addNewCategory";
@@ -23,6 +22,8 @@ const headers = [
 export default function PsDash({ loggedin, id }) {
   const [perData, setPerData] = useState();
 
+  const navigate = useNavigate();
+
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -33,8 +34,16 @@ export default function PsDash({ loggedin, id }) {
   const [amount, setAmount] = useState(0);
 
   const map = useRef();
+  const [history, setHistory] = useState([]);
+  const [head, setHead] = useState("");
 
-  const navigate = useNavigate();
+  const [utilitiesShow, setUtilitiesShow] = useState(false);
+  const handleUtilitiesClose = () => setUtilitiesShow(false);
+  const handleUtilitiesShow = (header) => {
+    setHistory(map.current.get(header.toUpperCase()));
+    setHead(header);
+    setUtilitiesShow(true);
+  };
 
   useEffect(() => {
     const fetch = async () => {
@@ -56,6 +65,27 @@ export default function PsDash({ loggedin, id }) {
     }
   }, [id, loggedin, navigate, show]);
 
+  useEffect(() => {
+    const fetch = async () => {
+      const user = await getMemberData(id);
+      const data = await user.json();
+      setPerData(data);
+      console.log(data.categories);
+      const dict = new Map();
+      headers.forEach((header) => dict.set(header.toUpperCase(), []));
+      data.categories.forEach((category) =>
+        dict.set(category.category.toUpperCase(), category.items)
+      );
+      map.current = dict;
+      console.log(map.current);
+    };
+    if (loggedin) {
+      fetch();
+    } else {
+      navigate("../signin", { replace: true });
+    }
+  });
+
   const getCategoryRow = () => {
     const render = [];
     headers.forEach((header) => {
@@ -69,7 +99,12 @@ export default function PsDash({ loggedin, id }) {
             scope="row"
             class="py-4 px-6 font-medium whitespace-nowrap text-white"
           >
-            {header}
+            <a
+              onClick={() => handleUtilitiesShow(header)}
+              className="font-bold text-white"
+            >
+              {header}
+            </a>
           </th>
           <td class="py-4 px-6">${categoryUsed}</td>
         </tr>
@@ -77,6 +112,7 @@ export default function PsDash({ loggedin, id }) {
     });
     return render;
   };
+
   return (
     <>
       {" "}
@@ -172,6 +208,12 @@ export default function PsDash({ loggedin, id }) {
             Add Expenses
           </button>
         </Modal.Footer>
+      </Modal>
+      <Modal show={utilitiesShow} onHide={handleUtilitiesClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>{head} Expenses</Modal.Title>
+        </Modal.Header>
+        <p>{JSON.stringify(history)}</p>
       </Modal>
       <div className="flex flex-col-2">
         <div>
