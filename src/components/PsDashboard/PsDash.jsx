@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router";
 import getMemberData from "../../APIs/getMemberData";
 import Modal from "react-bootstrap/Modal";
@@ -25,11 +25,23 @@ export default function PsDash({ loggedin, id }) {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  const map = useRef();
+
   const navigate = useNavigate();
   useEffect(() => {
     const fetch = async () => {
       const user = await getMemberData(id);
-      setPerData(await user.json());
+      const data = await user.json();
+      setPerData(data);
+      console.log(data.categories);
+      const dict = new Map();
+      headers.forEach((header) => dict.set(header.toUpperCase(), []));
+      data.categories.forEach((category) =>
+        dict.set(category.category.toUpperCase(), category.items)
+      );
+
+      map.current = dict;
+      console.log(map.current);
     };
     if (loggedin) {
       fetch();
@@ -38,17 +50,12 @@ export default function PsDash({ loggedin, id }) {
     }
   }, []);
 
-  console.log(perData);
   const getCategoryRow = () => {
     const render = [];
     headers.forEach((header) => {
-      console.log(header);
       const entry = perData.categories.find(({ category }) => {
-        console.log(category);
-        console.log(category.toUpperCase() === header.toUpperCase());
         return category.toUpperCase() === header.toUpperCase();
       });
-      console.log(entry);
       const categoryUsed = entry?.totalAmount ?? 0;
       render.push(
         <tr class="bg-gray-800 border-gray-700">

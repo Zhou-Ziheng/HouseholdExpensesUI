@@ -20,7 +20,7 @@ function Signin({ loggedin, setLogin }) {
 
   useEffect(() => {
     if (loggedin) {
-      navigate("../dashboard", { replace: true });
+      navigate("../PsDash", { replace: true });
     }
   });
 
