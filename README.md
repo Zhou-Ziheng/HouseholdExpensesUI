@@ -1,4 +1,7 @@
-[![logo gif](https://d112y698adiu2z.cloudfront.net/photos/production/software_thumbnail_photos/002/195/143/datas/medium.gif)](https://github.com/Rayane-T/Tracks/)
+<p align="center">
+  <img src="https://d112y698adiu2z.cloudfront.net/photos/production/software_thumbnail_photos/002/195/143/datas/medium.gif">
+</p>
+
 ### Inspiration
 
 - Many individuals lack financial freedom, and this stems from poor spending skills. As a result, our group wanted to create something to help prevent that. We realized how difficult it can be to track the expenses of each individual person in a family. As humans, we tend to lose track of what we purchase and spend money on. Inspired, we wanted to create an app that stops all that by allowing individuals to strengthen their organization and budgeting skills.
@@ -47,11 +50,13 @@ The personal expense tracker is assigned to each user, displaying their own expe
 - Allow users to create their own categories rather than the assigned ones
 - Setting up different levels of permission to allow people to view other family member’s usage
 
-[![Landing Page](readmephoto/original.png)](https://devpost.com/software/track-pwrn7y)
-[![Personnal Dashboard](readmephoto/original (1).png)](https://devpost.com/software/track-pwrn7y)
-[![General Dashboard](readmephoto/original (2).png)](https://devpost.com/software/track-pwrn7y)
-[![Add Expenses](readmephoto/original (3).png)](https://devpost.com/software/track-pwrn7y)
-[![Contact Page](readmephoto/original (4).png)](https://devpost.com/software/track-pwrn7y)
+<p align="center">
+  <img src="readmephoto/original.png">
+  <img src="readmephoto/original (1).png">
+  <img src="readmephoto/original (2).png">
+  <img src="readmephoto/original (3).png">
+  <img src="readmephoto/original (4).png">
+</p>
 
 Backend Repo : https://github.com/SparkyFnay/HouseholdExpensesServer
 DevPost : https://devpost.com/software/track-pwrn7y
