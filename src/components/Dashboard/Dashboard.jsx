@@ -70,11 +70,8 @@ const Dashboard = ({ id, loggedin }) => {
       </td>
     );
     const { admins } = sourceData;
-    console.log("admin", admins[0]._id);
     const find = admins.find((value) => value._id === id);
-    console.log("find result", find);
     if (admins && find) {
-      console.log(id);
       data.push(
         <td>
           <span class="p-1.5 text-xs font-medium uppercase tracking-wider text-red-800 bg-red-200 rounded-lg bg-opacity-50">
@@ -83,7 +80,6 @@ const Dashboard = ({ id, loggedin }) => {
         </td>
       );
     } else {
-      console.log(id);
       data.push(
         <td>
           <span class="p-1.5 text-xs font-medium uppercase tracking-wider text-green-800 bg-green-200 rounded-lg bg-opacity-50">
@@ -94,9 +90,10 @@ const Dashboard = ({ id, loggedin }) => {
     }
 
     for (let i = 2; i < headers.length; i++) {
+      console.log(user.categories);
       const amount =
         user.categories.find(({ category }) => category === headers[i])
-          ?.total ?? 0;
+          ?.totalAmount ?? 0;
       data.push(<td class="p-3 text-sm text-gray-700">{amount.toFixed(2)}</td>);
     }
     return <tr class={index % 2 ? "bg-[#c8b7e9]" : "bg-gray-200"}>{data}</tr>;
